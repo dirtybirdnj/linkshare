@@ -1,4 +1,4 @@
-var root = location.protocol + '//' + location.host + '/pixamatic/';
+var root = location.protocol + '//' + location.host + '/links/';
 
 $(document).ready(function(){
 
@@ -48,6 +48,13 @@ $(document).ready(function(){
 			$.post(loginUrl,{'email' : email, 'password' : password},function(data){
 				
 				console.log(data);
+				
+				if(data.status == 'ok'){
+					
+					window.location = root + 'users/home';
+				
+				} else { alert(data.message); }
+				
 				
 			});
 			

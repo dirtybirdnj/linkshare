@@ -7,7 +7,7 @@
       </div>
       
 	  
-	  <?php $pix->element('signup_modal'); ?>
+	  <?php $this->pix->element('signup_modal'); ?>
       
 
     </div> <!-- /container -->
@@ -17,9 +17,9 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <?php
     
-    echo $pix->script('jquery-1.11.1.min');
-    echo $pix->script('main');    
-    echo $pix->script('bootstrap/js/bootstrap-modal',false);    
+    echo $this->pix->script('jquery-1.11.1.min');
+    echo $this->pix->script('main');    
+    echo $this->pix->script('bootstrap/js/bootstrap-modal',false);    
     ?>
     
     <!--

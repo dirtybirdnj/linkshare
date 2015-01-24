@@ -1,7 +1,7 @@
   <!-- Jumbotron -->
   <div class="jumbotron">
-    <h1>Pixa<u class="muted">mat</u>ic!</h1>
-    <p class="lead"><em>Noun. - A photo sharing application and coding test<br/>An example of : Object Oriented PHP5, jQuery and AJAX<br/>All without using a framework!*</em></p>
+    <h1>Link-o-<u class="muted">mat</u>ic!</h1>
+    <p class="lead"><em>Noun. - A URL sharing application and coding test<br/>An example of : Object Oriented PHP5, jQuery and AJAX<br/>All without using a framework!*</em></p>
 
 
 	<!-- Button to trigger modal -->

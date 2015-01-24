@@ -1,35 +1,70 @@
 <?php
 
-class usersController extends pixamatic {
+//include_once('../models/user.php');
+
+class usersController extends linkomatic {
+
+	function __construct(){
+ 
+		$this->pix = new linkomatic;		 		
+		include_once($this->pix->webroot() . 'models/user.php');
+		$this->User = new User;
+		
+		$auth = new Auth();
+		$this->Auth = $auth->checkSession($_SESSION);
+		
+	}
 
 	public function index(){
 		
-		$pix = new pixamatic;
-		
-		include_once($pix->webroot() . 'layouts/top.php');
-		include_once($pix->webroot() . 'views/users/index.php');
-		include_once($pix->webroot() . 'layouts/bottom.php');		
+		include_once($this->pix->webroot() . 'layouts/top.php');
+		include_once($this->pix->webroot() . 'views/users/index.php');
+		include_once($this->pix->webroot() . 'layouts/bottom.php');		
 			
 	}
 	
+	public function home(){
+	
+		var_dump($this->Auth);
+	
+		if($this->Auth == false){
+			
+			//var_dump($this->pix->base_url());
+			
+			header('Location : ' . $this->pix->base_url());
+			
+		}
+		
+		include_once($this->pix->webroot() . 'layouts/top.php');
+		include_once($this->pix->webroot() . 'views/users/home.php');
+		include_once($this->pix->webroot() . 'layouts/bottom.php');		
+			
+	}	
+	
 	public function login(){
 		
-		$pix = new pixamatic;
-		var_dump($_POST);
+		$email = $_POST['email'];
+		$password = $_POST['password'];		
+		$user_exists = $this->User->checkLogin($email,$password);
 		
+		if($user_exists['status'] == 'ok'){ $_SESSION['User'] = $user_exists['data']; }
+		else unset($_SESSION['User']);
 		
+		$this->pix->jsonOutput($user_exists);
 		
 	}
 	
 	public function logout(){
 		
+		unset($_SESSION['User']);
+		header('Location: ' . $this->pix->base_url());
 		
 		
 	}
 	
 	public function add(){
 		
-		$pix = new pixamatic;
+		$pix = new linkomatic;
 		
 		if($_POST){
 		
@@ -37,14 +72,13 @@ class usersController extends pixamatic {
 			$password = $_POST['password'];
 			
 			$user_exists = $pix->checkLogin($email,$password);
-			var_dump($user_exists);
 			
-			die();
 			
 			if(!$user_exists){
 				
 				$user = $pix->addUser($email,$password);
-				var_dump($user);
+				redirect($pix->base_url() . 'users/home');
+				
 				
 			} else {
 				
