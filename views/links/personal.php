@@ -1,4 +1,5 @@
-<h1>Browsing All Links</h1>
+
+<h1>My Links</h1>
 <?php 
 
 

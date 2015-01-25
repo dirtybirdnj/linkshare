@@ -30,7 +30,11 @@
 	  
 	  <div class="row-fluid">
 	  	<div class="span12">
-<?php 
+	  	
+	  	<?php 
+	  	//Display any notifications
+	  	
+	  	if(isset($this->Message)){ echo $this->Message; } 
 
 //Content gets included here 	  	
 

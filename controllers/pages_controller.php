@@ -5,11 +5,17 @@ class pagesController extends linkomatic {
 	function __construct(){
  
 		$this->pix = new linkomatic;		 		
+
 		//include_once($this->pix->webroot() . 'models/user.php');
 		//$this->User = new User;
+
+		include_once($this->pix->webroot() . 'models/link.php');
+		$this->Link = new Link;
 		
 		$auth = new Auth();
-		$this->Auth = $auth->checkSession($_SESSION);
+		$this->Auth = $auth;
+		$this->User = $auth->checkSession($_SESSION);
+		$this->Message = $auth->checkMessage();
 		
 	}	
 	

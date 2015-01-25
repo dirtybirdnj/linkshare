@@ -5,33 +5,12 @@ class linkomatic extends db {
 	private static $webroot = '/var/www/links/';
 	private static $base_url = 'http://www.matgilbert.com/links/';
 
-/*
-	
-	//Returns a record set
-	private function queryRows($SQL){
+	public function redirect($path){
 		
-		$link = $this->dbConnect();
-		$clean_sql = $link->real_escape_string($SQL);
-		$result = $link->query($clean_sql);
+		header("Location: " . self::$base_url . $path);
+		die();
 		
-		$results = array();
-		while ($row = $result->fetch_assoc()){ $results[] = $row; }		
-		$this->dbClose($link);
-		return $results;		
-
-	}
-	
-	
-	private function queryInsert($SQL){
-		
-		$link = $this->dbConnect();
-		$clean_sql = $link->real_escape_string($SQL);		
-		$result = $link->query(stripslashes($clean_sql));
-		return $result;			
-		
-	}
-	
-*/		
+	}	
 	
 	public function webroot(){ return self::$webroot; }
 
@@ -66,18 +45,6 @@ class linkomatic extends db {
 		
 		//If not specified, halt any further execution
 		if($die) die();
-		
-	}
-	
-	
-	
-	public function addUser($email,$password){
-		
-		$hashPass = md5($password);
-		$SQL = "INSERT INTO users (email,password) VALUES ('$email','$hashPass');";
-		$result = $this->queryInsert($SQL);
-		
-		return $result;
 		
 	}
 	

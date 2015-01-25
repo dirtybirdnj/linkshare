@@ -49,21 +49,14 @@ $(document).ready(function(){
 				
 				console.log(data);
 				
-				if(data.status == 'ok'){
-					
-					window.location = root + 'users/home';
-				
-				} else { alert(data.message); }
+				if(data.status == 'ok'){ window.location = root + 'private'; } 
+				else { alert(data.message); }
 				
 				
-			});
+			},"json");
 			
 			
-		} else {
-			
-			alert('You must enter an email address and password to continue');
-			
-		}
+		} else { alert('You must enter an email address and password to continue'); }
 		
 	});
 	

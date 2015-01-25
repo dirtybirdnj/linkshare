@@ -11,6 +11,25 @@
 		
 		$action_arr = explode('/',$action_str);
 		$action = $action_arr[0];
+		
+		//Custom URLs
+		
+		if($controller == 'private'){
+			
+			$controller = 'links';
+			$action = 'personal';
+			
+			
+		}
+		
+		if($controller == 'browse'){
+			
+			$controller = 'links';
+			$action = 'browse';
+			
+			
+		}		
+		
 
 	} else {
 	

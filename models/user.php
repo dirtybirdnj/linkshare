@@ -7,7 +7,7 @@ class User extends linkomatic {
 		
 		$clean_email = parent::sanitize($email);
 	
-		$SQL = "SELECT id,email,password FROM users WHERE email = '$clean_email';";
+		$SQL = "SELECT id,email,password,admin FROM users WHERE email = '$clean_email';";
 		$user = parent::queryRow($SQL);	
 	
 		//No user record, return false
@@ -27,8 +27,31 @@ class User extends linkomatic {
 			 
 			 } else { $return = array('status' => 'fail', 'message' => 'Invalid password');	}
 			
-		}		
+		}
+		
+		
+		parent::dbClose();		
 	}
+	
+	public function addUser($email,$password){
+		
+		$hashPass = md5($password);
+		$clean_email = parent::sanitize($email);
+
+		echo "\nclean email: $clean_email\n";
+		
+		$SQL = "INSERT INTO users (email,password) VALUES ('$clean_email','$hashPass');";
+		
+		echo "\n$SQL\n";
+		
+		$result = parent::queryInsert($SQL);
+		
+		var_dump($result);
+		
+		
+		return $result;
+		
+	}	
 	
 	public function validPass($password,$hash){
 		
