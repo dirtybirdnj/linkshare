@@ -19,8 +19,6 @@ class linksController extends linkomatic {
 	
 	//Might be able to remove this now that root / is session aware
 	public function browse(){
-	
-		$pix = new linkomatic;
 		
 		$links = $this->Link->getLinks();
 		
@@ -33,8 +31,26 @@ class linksController extends linkomatic {
 	
 	//Personal not private because private is a reserved word
 	public function personal(){
-				
-		$pix = new linkomatic;
+
+		//User ID, Email, isAdmin		
+		if(count($this->User) != 3){
+
+			$this->Auth->setMessage('danger','You must be signed in to view private links.');												
+			$this->pix->redirect('');
+			
+		}		
+		
+		$links = $this->Link->getLinks($this->User['id'],1);
+		
+		include_once($this->pix->webroot() . 'layouts/top.php');
+		include_once($this->pix->webroot() . 'views/links/personal.php');
+		include_once($this->pix->webroot() . 'layouts/bottom.php');			
+		
+		
+	}
+	
+	//PUBLIC is also a reserved word. duh. Route for this is /public
+	public function notprivate(){
 				
 		//User ID, Email, isAdmin		
 		if(count($this->User) != 3){
@@ -44,18 +60,16 @@ class linksController extends linkomatic {
 			
 		}		
 		
-		$links = $this->Link->getLinks();
+		$links = $this->Link->getLinks($this->User['id'],0);
 		
 		include_once($this->pix->webroot() . 'layouts/top.php');
-		include_once($this->pix->webroot() . 'views/links/personal.php');
-		include_once($this->pix->webroot() . 'layouts/bottom.php');			
+		include_once($this->pix->webroot() . 'views/links/public.php');
+		include_once($this->pix->webroot() . 'layouts/bottom.php');				
 		
 		
 	}
 
 	public function add(){
-	
-		$pix = new linkomatic;
 		
 		//User ID, Email, isAdmin
 		if(count($this->User) != 3){
@@ -82,7 +96,9 @@ class linksController extends linkomatic {
 				if($result){
 				
 					$this->Auth->setMessage('success','Your new link was successfully added!');
-					$this->pix->redirect('private');
+					
+					if($private == 1) $this->pix->redirect('private');
+					else $this->pix->redirect('public');
 					
 				} else {
 
@@ -103,6 +119,23 @@ class linksController extends linkomatic {
 		include_once($pix->webroot() . 'views/links/add.php');
 		include_once($pix->webroot() . 'layouts/bottom.php');		
 		
+		
+	} //end add
+	
+	public function delete(){
+		
+		if(!empty($_POST)){
+			
+			
+			
+
+			
+		} else {
+			
+			$this->Auth->setMessage('danger','Something went wrong, please try again.');					
+			$this->pix->redirect('');			
+			
+		}
 		
 	}
 	

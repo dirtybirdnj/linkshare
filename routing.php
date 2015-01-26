@@ -12,24 +12,25 @@
 		$action_arr = explode('/',$action_str);
 		$action = $action_arr[0];
 		
-		//Custom URLs
-		
+		//Custom URLs, mostly to create nice looking action/verb style URLs around the word "link"
 		if($controller == 'private'){
-			
 			$controller = 'links';
 			$action = 'personal';
-			
-			
 		}
 		
 		if($controller == 'browse'){
-			
 			$controller = 'links';
 			$action = 'browse';
-			
-			
-		}		
+		}
 		
+		if($controller == 'public'){
+			$controller = 'links';
+			$action = 'notprivate';
+		}		
+		if($controller == 'delete'){
+			$controller = 'links';
+			$action = 'delete';
+		}
 
 	} else {
 	
@@ -37,8 +38,7 @@
 	
 		$controller = 'pages';
 		$action = 'home';
-		
-		
+
 	}
 
 	//Load the  model
@@ -52,15 +52,6 @@
 
 	if($action == '') $action = 'index';
 	$con->$action();
-		
-	
-	/*
-	else {
-		
-		include_once($pix->webroot() . 'layouts/top.php');
-		include_once($pix->webroot() . 'views/pages/home.php');
-		include_once($pix->webroot() . 'layouts/bottom.php');
-		
-	}*/
+
 	
 ?>

@@ -69,6 +69,11 @@
   }
   
   /* Actual CSS for the project */
+  hr {
+	  margin: 0px;
+	  
+  }
+  
   #logoutform {
 	  
 	  line-height: 30px;

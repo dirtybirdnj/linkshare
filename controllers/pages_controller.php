@@ -22,12 +22,8 @@ class pagesController extends linkomatic {
 	public function home(){
 		
 		include_once($this->pix->webroot() . 'layouts/top.php');
-		
-		krumo($this);
-		
-		if(count($this->User) == 1){
-			
-			include_once($this->pix->webroot() . 'views/pages/home.php');
+				
+		if(count($this->User) == 1){ include_once($this->pix->webroot() . 'views/pages/home.php');
 		
 		} else {
 			

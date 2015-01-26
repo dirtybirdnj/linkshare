@@ -33,7 +33,14 @@ $(document).ready(function(){
 			
 			console.log(data);
 			
-		});					
+			if(data.status == 'ok'){ window.location = root + 'browse'; } 
+			else { 
+			
+				alert(data.message); 
+				
+			}			
+			
+		},"json");					
 		
 	});
 	
@@ -50,7 +57,11 @@ $(document).ready(function(){
 				console.log(data);
 				
 				if(data.status == 'ok'){ window.location = root + 'private'; } 
-				else { alert(data.message); }
+				else { 
+				
+					alert(data.message); 
+					
+				}
 				
 				
 			},"json");

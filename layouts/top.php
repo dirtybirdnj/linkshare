@@ -41,3 +41,4 @@
 //Bottom closes off the page
 
 ?>
+<hr/>

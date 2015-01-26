@@ -42,7 +42,7 @@ class db {
 	
 	public function queryInsert($SQL){
 		
-		$result = $this->link->query($SQL);
+		$result = $this->link->query($SQL);	
 		return $result;			
 		
 	}

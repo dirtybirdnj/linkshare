@@ -78,34 +78,34 @@ class usersController extends linkomatic {
 		
 			$email = $_POST['email'];
 			$password = $_POST['password'];
+
+			$user = $this->User->addUser($email,$password);
 			
-			//$user_exists = $this->User->checkLogin($email,$password);
-			$user_exists = false;
-			
-			if(!$user_exists){
-				
-				$user = $this->User->addUser($email,$password);
-				
-				$this->Auth->setMessage('success','You created an account! Now you can start submitting links.');	
-				$response['status'] = 'ok';
-				$this->pix->jsonOutput($response);
-					
-			} else {
+			if($user['status'] == 'fail'){
 				
 				$response['status'] = 'fail';
-				$response['message'] = 'User already exists';
-				$this->pix->jsonOutput($response);				
+				$response['message'] = $user['message'];
+				$this->pix->jsonOutput($response);					
+				
+			} else {
+				
+				$this->Auth->setMessage('success','Thanks for signing up! Now you can start submitting links.');	
+
+				//Set the user's session so they are automatically logged in
+				$_SESSION['User'] = $user['data'];
+
+				$response['status'] = 'ok';
+				$this->pix->jsonOutput($response);	
+				
 				
 			}
-			
+					
 		} else {
 			
-						
+			//Not a valid post request, either a bad link or a user trying to do something they shouldn't			
 			$this->Auth->setMessage('warning','Something went wrong! Sorry about that, please try again.');												
 			$this->pix->redirect('');
-			
-			
-			
+
 		}
 		
 	}

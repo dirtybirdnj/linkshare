@@ -11,10 +11,12 @@ class User extends linkomatic {
 		$user = parent::queryRow($SQL);	
 	
 		//No user record, return false
-		if(!$user){ $return = array('status' => 'fail', 'message' => 'Invalid user'); }
+		if(!$user){ return $return = array('status' => 'fail', 'message' => 'Invalid user'); }
 		
 		//Else the user exists, check to see if the password is correct
 		else {
+		
+			//echo "IS A VALID USER \n\n";
 			
 			$passIsValid = $this->validPass($password,$user['password']);
 			
@@ -25,7 +27,7 @@ class User extends linkomatic {
 			 
 			 return $return = array('status' => 'ok', 'data' => $user); 
 			 
-			 } else { $return = array('status' => 'fail', 'message' => 'Invalid password');	}
+			 } else { return $return = array('status' => 'fail', 'message' => 'Invalid password');	}
 			
 		}
 		
@@ -37,19 +39,32 @@ class User extends linkomatic {
 		
 		$hashPass = md5($password);
 		$clean_email = parent::sanitize($email);
-
-		echo "\nclean email: $clean_email\n";
+		$user_exists = $this->checkLogin($email,$password);
 		
-		$SQL = "INSERT INTO users (email,password) VALUES ('$clean_email','$hashPass');";
+		if($user_exists['status'] == 'fail' && $user_exists['message'] == 'Invalid user'){
 		
-		echo "\n$SQL\n";
+			$SQL = "INSERT INTO users (email,password,admin) VALUES (\"$clean_email\",\"$hashPass\",0);";
+			$result = parent::queryInsert($SQL);
+			
+			if($result){ $return = $this->checkLogin($email,$password); } 
+			else { $return = array('status' => 'fail', 'message' => 'Error creating user');} 
 		
-		$result = parent::queryInsert($SQL);
+		} else  { 
 		
-		var_dump($result);
+			if($user_exists['status'] == 'ok'){
+				
+				$return = array('status' => 'fail', 'message' => 'Error user already exists');
+				
+			} else {
+			
+				var_dump($user_exists);
+				die('your conditionals are bad and you should feel bad'); 
+				
+			}
 		
+		}
 		
-		return $result;
+		return $return;
 		
 	}	
 	

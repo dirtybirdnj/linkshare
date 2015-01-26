@@ -32,8 +32,9 @@
 			
 			<?php } else { ?>
           
-            <li><?php echo $pix->link('Browse All Links',''); ?></li>
-            <li><?php echo $pix->link('My Links','private'); ?></li>
+            <li><?php echo $pix->link('Browse All Links','browse'); ?></li>
+            <li><?php echo $pix->link('My Public Links','public'); ?></li>
+            <li><?php echo $pix->link('My Private Links','private'); ?></li>
             <?php if(isset($_SESSION['User']) && $_SESSION['User']['admin'] === '1'){ ?><li><?php echo $pix->link('Users','users'); ?></li><?php } ?>
             
             <?php } ?>

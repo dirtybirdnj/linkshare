@@ -35,6 +35,12 @@ class linkomatic extends db {
 	
 	public function link($text,$path){ return "<a href=" . self::$base_url . $path . ">$text</a>"; }	
 
+	public function linkURL($text,$URL){
+		
+		return '<a href="' . $URL . '">' . $text . '</a>';
+		
+	}
+
 	public function jsonOutput($json,$die = true){
 			
 		header('Content-Type: text/javascript; charset=utf8');
