@@ -20,8 +20,6 @@ class pagesController extends linkomatic {
 	}	
 	
 	public function home(){
-	
-		$pix = new linkomatic;
 		
 		include_once($this->pix->webroot() . 'layouts/top.php');
 		include_once($this->pix->webroot() . 'views/pages/home.php');
