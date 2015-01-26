@@ -89,7 +89,7 @@ class linksController extends linkomatic {
 				$id = $this->User['id'];
 				$url = $_POST['url'];
 				
-				$private = (isset($_POST['private']) ? 1 : 0);
+				$private = (isset($_POST['private']) ? 1 : 0);				
 				
 				$result = $this->Link->addLink($id,$url,$private);
 				

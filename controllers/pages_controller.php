@@ -27,7 +27,11 @@ class pagesController extends linkomatic {
 		
 		} else {
 			
-			echo 'show all links';
+			$links = $this->Link->getLinks();
+			
+			include_once($this->pix->webroot() . 'layouts/top.php');
+			include_once($this->pix->webroot() . 'views/links/index.php');
+			include_once($this->pix->webroot() . 'layouts/bottom.php');		
 			
 		}
 		
