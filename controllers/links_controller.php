@@ -16,6 +16,8 @@ class linksController extends linkomatic {
 		
 	}	
 	
+	
+	//Might be able to remove this now that root / is session aware
 	public function browse(){
 	
 		$pix = new linkomatic;
