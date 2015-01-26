@@ -71,5 +71,12 @@ $(document).ready(function(){
 		
 	});
 	
+	$('.deleteLink').click(function(event){
+		
+		event.preventDefault();
+		if(confirm('Are you sure you want to delete this link?')){ $(event.target).parent().submit(); } 
+		
+	});
+	
 	
 });

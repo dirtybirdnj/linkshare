@@ -30,7 +30,7 @@ if(!empty($links)){ ?>
 		
 		echo '<tr>';
 		echo '<td><small>' . $link['created'] . '</small></td><td>' . $this->pix->linkURL($link['url'],$link['url']) . '</td>';
-		echo '<td><form class="pull-right" action="' . $this->pix->base_url() . 'links/delete"><input type="hidden" name="id" value="' . $link['id'] . '"/><input type="submit" class="btn btn-danger deleteLink" value="delete" /></form></td>';
+		echo '<td><form method="post" class="pull-right" action="' . $this->pix->base_url() . 'links/delete"><input type="hidden" name="id" value="' . $link['id'] . '"/><input type="submit" class="btn btn-danger btn-small deleteLink" value="delete" /></form></td>';
 		//foreach($link as $elem){ echo "<td>$elem</td>"; }
 		
 		echo '</tr>';

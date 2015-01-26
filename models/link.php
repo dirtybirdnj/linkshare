@@ -48,7 +48,34 @@ class Link extends linkomatic {
 		
 	}
 	
-	public function delete($link_id){
+	public function delete($user_id,$link_id){
+		
+		
+		$SQL = "SELECT user_id FROM links WHERE id = $link_id;";
+		
+		$row = parent::queryRow($SQL);
+		
+		
+		krumo($row);
+		if($row == null){
+			
+		} else {}
+		
+		if($row['user_id'] == $user_id){
+			
+			$SQL = "DELETE FROM links WHERE id = $link_id LIMIT 1;";
+			$result = parent::queryInsert($SQL);
+			
+			krumo($result);
+			
+			die();
+			
+		} 
+		
+		//Non-admins are not allowed to delete posts
+		else { $return = array('status' => 'fail', 'message' => 'User Access Fail'); }
+		
+		return $return;
 		
 		
 		

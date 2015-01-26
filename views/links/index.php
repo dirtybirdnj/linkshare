@@ -1,12 +1,14 @@
-<h1>Browsing All Links</h1>
+<h1>All Links From All Users</h1>
+<em>Drinking from the firehose!</em>
+<br/><br/>
 <?php 
 
 if(!empty($links)){ ?>
 
 <table class="table">
 <tr>
-	<th>email</th>
 	<th>created</th>
+	<th>email</th>
 	<th>url</th>	
 </tr>
 <?php 
