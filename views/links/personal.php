@@ -1,4 +1,4 @@
-<div class="pull-right">
+<div class="pull-right linkAdd">
 <strong>Add a New Private Link</strong>
 <form class="form-inline" action="<?php echo $this->pix->base_url(); ?>links/add" method="post" >
 	Link: <input id="linkURL" name="url" type="text">

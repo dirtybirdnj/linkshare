@@ -37,7 +37,7 @@ class linkomatic extends db {
 
 	public function linkURL($text,$URL){
 		
-		return '<a href="' . $URL . '">' . $text . '</a>';
+		return '<a target="_blank" href="' . $URL . '">' . $text . '</a>';
 		
 	}
 

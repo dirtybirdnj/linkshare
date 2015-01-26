@@ -21,7 +21,7 @@
     
     <?php } ?>
       
-    <h3 class="muted">Link-o-matic</h3>
+    <h3 class="muted">Link-o-<span class="titleEm">mat</span>ic</h3>
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
