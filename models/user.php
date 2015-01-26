@@ -4,7 +4,6 @@ class User extends linkomatic {
 
 	public function checkLogin($email,$password){
 	
-		
 		$clean_email = parent::sanitize($email);
 	
 		$SQL = "SELECT id,email,password,admin FROM users WHERE email = '$clean_email';";

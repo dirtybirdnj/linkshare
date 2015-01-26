@@ -23,7 +23,9 @@ class usersController extends linkomatic {
 
 	public function index(){
 
-		if($this->Session['admin'] === '0'){
+		//krumo($this);
+
+		if($this->Session['User'] == false){
 			
 			$this->Auth->setMessage('danger','You must be an admin to view user information.');												
 			$this->pix->redirect('');
