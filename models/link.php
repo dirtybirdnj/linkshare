@@ -55,21 +55,11 @@ class Link extends linkomatic {
 		
 		$row = parent::queryRow($SQL);
 		
-		
-		krumo($row);
-		if($row == null){
-			
-		} else {}
-		
 		if($row['user_id'] == $user_id){
 			
 			$SQL = "DELETE FROM links WHERE id = $link_id LIMIT 1;";
 			$result = parent::queryInsert($SQL);
-			
-			krumo($result);
-			
-			die();
-			
+						
 		} 
 		
 		//Non-admins are not allowed to delete posts

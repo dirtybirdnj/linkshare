@@ -126,7 +126,6 @@ class linksController extends linkomatic {
 		
 		if(!empty($_POST)){
 			
-			krumo($this);
 			$link_id = intval($_POST['id']);
 			$user_id = intval($this->User['id']);
 			
@@ -134,17 +133,16 @@ class linksController extends linkomatic {
 			
 			if($result['status'] == 'fail'){
 				
-				var_dump($result);
+				$this->Auth->setMessage('danger','Something went wrong, please try again.');					
+				$this->pix->redirect('');	
 				
-				die();
-				
-				
-				//$this->Auth->setMessage('danger','Something went wrong, please try again.');					
-				//$this->pix->redirect('');	
+			} else {
+
+				$this->Auth->setMessage('success','You deleted a link. It\'s gone forever.');					
+				$this->pix->redirect('browse');					
 				
 			}
 			
-			krumo($result);
 
 			
 		} else {

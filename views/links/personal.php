@@ -25,6 +25,7 @@ if(!empty($links)){ ?>
 	-->
 	<th>created</th>
 	<th>url</th>
+	<th>&nbsp;</th>
 	
 </tr>
 <?php 
@@ -32,7 +33,7 @@ foreach($links as $link){
 	
 	echo '<tr>';
 	echo '<td><small>' . $link['created'] . '</small></td><td>' . $this->pix->linkURL($link['url'],$link['url']) . '</td>';
-	//foreach($link as $elem){ echo "<td>$elem</td>"; }
+		echo '<td><form method="post" class="pull-right" action="' . $this->pix->base_url() . 'links/delete"><input type="hidden" name="id" value="' . $link['id'] . '"/><input type="submit" class="btn btn-danger btn-small deleteLink" value="delete" /></form></td>';
 	
 	echo '</tr>';
 }
